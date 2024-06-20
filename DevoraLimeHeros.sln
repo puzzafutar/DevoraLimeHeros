@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevoraLimeHeros", "DevoraLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevoraLimeHeros.Application", "DevorLimeHeros.Application\DevoraLimeHeros.Application.csproj", "{09EA9E95-EACF-4ADA-9C59-13D01837D608}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevoraLimeHeros.Domain", "DeraLime.Domain\DevoraLimeHeros.Domain.csproj", "{DAD134A2-58E5-4352-9E9B-FCCC6F071D21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevoraLimeHeros.Domain", "DevoraLime.Domain\DevoraLimeHeros.Domain.csproj", "{DAD134A2-58E5-4352-9E9B-FCCC6F071D21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevoraLimeHeros.ApplicationTests", "DevoraLimeHeros.ApplicationTests\DevoraLimeHeros.ApplicationTests.csproj", "{2121F728-8A90-4733-8FB0-996BB874E211}"
 EndProject
