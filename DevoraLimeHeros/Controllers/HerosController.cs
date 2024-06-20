@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using DevoraLimeHeros.Application.Manager.Interface;
-using System.Text;
-using System.Net;
 using DevoraLimeHeros.Domain;
 
 namespace DevoraLimeHeros.Controllers

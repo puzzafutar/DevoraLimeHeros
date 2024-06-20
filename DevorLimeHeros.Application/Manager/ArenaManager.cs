@@ -1,9 +1,8 @@
-﻿using DevorLimeHeros.Application.Providers;
-using DevoraLimeHeros.Domain;
-using DevoraLimeHeros.Application.Service.Interface;
+﻿using DevoraLimeHeros.Application.Service.Interface;
 using DevoraLimeHeros.Application.Manager.Interface;
 using DevoraLimeHeros.Application.Provider.Interface;
 using System.Text;
+using DevoraLimeHeros.Domain;
 
 namespace DevoraLimeHeros.Application.Manager
 {

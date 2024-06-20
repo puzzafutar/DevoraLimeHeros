@@ -1,5 +1,4 @@
-﻿
-namespace DevoraLimeHeros.Domain
+﻿namespace DevoraLimeHeros.Domain
 {
     public enum HeroTypeEnum
     {
