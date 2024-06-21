@@ -32,29 +32,22 @@ namespace DevoraLimeHeros.Application.Manager
 
         public string Fight(Arena selectedArena)
         {
+            StringBuilder stringBuilderResult = new StringBuilder();
             _attackResultList.Clear();
 
             //harc implementáció
-            //véletlenszerűen kiválasztok 2 elő hőst és nem harcolhat önmagával
             do
             {
                 List<Hero> aliveHeros = GetAliveHeroList(selectedArena);
 
-                Hero attackHero = aliveHeros[_randomProvider.GetIntValue(aliveHeros.Count)];
-                aliveHeros.Remove(attackHero);
-                Hero attackedHero = null;
-                do
-                {
-                    attackedHero = aliveHeros[_randomProvider.GetIntValue(aliveHeros.Count)];
+                var selectedHeros = Select2DifferentAliveHero(aliveHeros);
 
-                } while (attackHero == attackedHero);
-
-                if (attackHero == attackedHero)
-                {
-                    throw new Exception("Ugyanaz a hős van kiválasztva!");
-                }
-
-                aliveHeros.Remove(attackedHero);
+                //Támadó
+                Hero attackHero = selectedHeros.First();
+                
+                //Védekező
+                Hero attackedHero = selectedHeros.Last();
+                
                 //A többi elküldjük pihenni
                 foreach (Hero hero in aliveHeros)
                 {
@@ -62,20 +55,21 @@ namespace DevoraLimeHeros.Application.Manager
                 }
 
                 //a kiválasztottak összecsapnak
+                var attackresult = new AttackResult(attackHero,attackedHero);
+
+                stringBuilderResult.AppendLine(attackresult.GetBeforeAttackString());
+
                 var attackRersult = _heroService.Attack(attackHero, attackedHero);
+
+                stringBuilderResult.AppendLine(attackRersult.GetAfterAttackString());
+
                 _attackResultList.Add(attackRersult);
 
             } while (GetAliveHeroList(selectedArena).Count > Constants.Hero.MinHeroCounter);
 
-            StringBuilder resultStringBuilder = new StringBuilder();
-            resultStringBuilder.AppendLine($"{_attackResultList.Count} kör volt, részeredmények:");
+            stringBuilderResult.AppendLine($"{_attackResultList.Count} kör volt");
 
-            foreach (var attack in _attackResultList)
-            {
-                resultStringBuilder.AppendLine(attack.ToString());
-            }
-
-            return resultStringBuilder.ToString();
+            return stringBuilderResult.ToString();
 
         }
 
@@ -90,6 +84,30 @@ namespace DevoraLimeHeros.Application.Manager
         public Arena? GetArenaById(int arenaId)
         {
             return _arenaList.Where(arena => arena.Id == arenaId).FirstOrDefault();
+        }
+
+        private List<Hero> Select2DifferentAliveHero(List<Hero> aliveHeros)
+        {
+            List<Hero> seletedResult = new List<Hero>();
+
+            Hero attackHero = aliveHeros[_randomProvider.GetIntValue(aliveHeros.Count)];
+            aliveHeros.Remove(attackHero);
+            Hero attackedHero = null;
+            do
+            {
+                attackedHero = aliveHeros[_randomProvider.GetIntValue(aliveHeros.Count)];
+
+            } while (attackHero == attackedHero);
+
+            if (attackHero == attackedHero)
+            {
+                throw new Exception("Ugyanaz a hős van kiválasztva!");
+            }
+
+            aliveHeros.Remove(attackedHero);
+
+            return new List<Hero> { attackHero, attackedHero };
+
         }
     }
 }
