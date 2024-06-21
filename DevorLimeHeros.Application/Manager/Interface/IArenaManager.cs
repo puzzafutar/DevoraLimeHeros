@@ -9,5 +9,7 @@ namespace DevoraLimeHeros.Application.Manager.Interface
         string Fight(Arena selectedArena);
 
         Arena? GetArenaById(int id);
+
+        List<Hero> Select2DifferentAliveHero(List<Hero> aliveHeros);
     }
 }

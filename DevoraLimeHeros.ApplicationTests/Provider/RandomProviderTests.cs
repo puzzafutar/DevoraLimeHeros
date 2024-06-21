@@ -1,12 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DevorLimeHeros.Application.Providers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DevorLimeHeros.Application.Providers.Tests
+﻿namespace DevorLimeHeros.Application.Providers.Tests
 {
     [TestClass()]
     public class RandomProviderTests
@@ -23,7 +15,7 @@ namespace DevorLimeHeros.Application.Providers.Tests
         }
 
         [TestMethod()]
-        public void GetDoubleValueTest()
+        public void GetDoubleValue_Double_ReturnsTrue()
         {
             var number = provider.GetDoubleValue();
 

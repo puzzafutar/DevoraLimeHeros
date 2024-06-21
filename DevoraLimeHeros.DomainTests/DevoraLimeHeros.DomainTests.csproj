@@ -11,14 +11,14 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevorLimeHeros.Application\DevoraLimeHeros.Application.csproj" />
+    <ProjectReference Include="..\DevoraLime.Domain\DevoraLimeHeros.Domain.csproj" />
+    <ProjectReference Include="..\DevoraLimeHeros.ApplicationTests\DevoraLimeHeros.ApplicationTests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

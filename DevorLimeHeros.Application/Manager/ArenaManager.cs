@@ -86,7 +86,7 @@ namespace DevoraLimeHeros.Application.Manager
             return _arenaList.Where(arena => arena.Id == arenaId).FirstOrDefault();
         }
 
-        private List<Hero> Select2DifferentAliveHero(List<Hero> aliveHeros)
+        public List<Hero> Select2DifferentAliveHero(List<Hero> aliveHeros)
         {
             List<Hero> seletedResult = new List<Hero>();
 
