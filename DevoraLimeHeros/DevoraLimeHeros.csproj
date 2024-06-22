@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevoraLime.Domain\DevoraLimeHeros.Domain.csproj" />
     <ProjectReference Include="..\DevorLimeHeros.Application\DevoraLimeHeros.Application.csproj" />
   </ItemGroup>
 

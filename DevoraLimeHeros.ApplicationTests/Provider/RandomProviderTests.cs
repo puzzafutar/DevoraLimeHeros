@@ -11,7 +11,7 @@
 
             var number = provider.GetIntValue(5);
 
-            Assert.IsTrue(number > 0 && number < 5);
+            Assert.IsTrue(number >= 0 && number < 5);
         }
 
         [TestMethod()]

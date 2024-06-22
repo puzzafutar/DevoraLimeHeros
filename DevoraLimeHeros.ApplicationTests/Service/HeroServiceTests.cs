@@ -10,7 +10,7 @@ namespace DevoraLimeHeros.Application.Service.Tests
         private readonly HeroFactory _heroFactory = new HeroFactory();
         private readonly HeroService _heroService = new HeroService(new RandomProvider());
 
-        private const int HalfHealtPoint = 80;
+        private const int PartHealtPoint = 80;
         private const int RelaxHealtPoint = 10;
 
         #region Archery attack
@@ -179,27 +179,51 @@ namespace DevoraLimeHeros.Application.Service.Tests
         public void Relax_Rider_ReturnsTrue()
         {
             Hero riderHero = _heroFactory.GetHero(HeroTypeEnum.Rider, 1);
-            riderHero.HealtPoint = HalfHealtPoint;
+            riderHero.HealtPoint = PartHealtPoint;
             _heroService.Relax(riderHero);
-            Assert.IsTrue(riderHero.HealtPoint == HalfHealtPoint + RelaxHealtPoint);
+            Assert.IsTrue(riderHero.HealtPoint == PartHealtPoint + RelaxHealtPoint);
         }
 
         [TestMethod()]
-        public void Relax_Archery_ReturnsTrue()
+        public void Relax_Archery_PartHealtPoint_ReturnsTrue()
         {
             Hero riderHero = _heroFactory.GetHero(HeroTypeEnum.Archery, 1);
-            riderHero.HealtPoint = HalfHealtPoint;
+            riderHero.HealtPoint = PartHealtPoint;
             _heroService.Relax(riderHero);
-            Assert.IsTrue(riderHero.HealtPoint == HalfHealtPoint + RelaxHealtPoint);
+            Assert.IsTrue(riderHero.HealtPoint == PartHealtPoint + RelaxHealtPoint);
         }
 
         [TestMethod()]
-        public void Relax_Swordman_ReturnsTrue()
+        public void Relax_Swordman_PartHealtPoint_ReturnsTrue()
         {
             Hero riderHero = _heroFactory.GetHero(HeroTypeEnum.Swordsman, 1);
-            riderHero.HealtPoint = HalfHealtPoint;
+            riderHero.HealtPoint = PartHealtPoint;
             _heroService.Relax(riderHero);
-            Assert.IsTrue(riderHero.HealtPoint == HalfHealtPoint + RelaxHealtPoint);
+            Assert.IsTrue(riderHero.HealtPoint == PartHealtPoint + RelaxHealtPoint);
+        }
+
+        [TestMethod()]
+        public void Relax_Rider_FullHealtPoint_ReturnsTrue()
+        {
+            Hero riderHero = _heroFactory.GetHero(HeroTypeEnum.Rider, 1);
+            _heroService.Relax(riderHero);
+            Assert.IsTrue(riderHero.HealtPoint == Constants.Hero.RiderMaxHealth);
+        }
+
+        [TestMethod()]
+        public void Relax_Swordsman_FullHealtPoint_ReturnsTrue()
+        {
+            Hero swordsmanHero = _heroFactory.GetHero(HeroTypeEnum.Swordsman, 1);
+            _heroService.Relax(swordsmanHero);
+            Assert.IsTrue(swordsmanHero.HealtPoint == Constants.Hero.SwordsmanMaxHealth);
+        }
+
+        [TestMethod()]
+        public void Relax_Archery_FullHealtPoint_ReturnsTrue()
+        {
+            Hero archeryHero = _heroFactory.GetHero(HeroTypeEnum.Archery, 1);
+            _heroService.Relax(archeryHero);
+            Assert.IsTrue(archeryHero.HealtPoint == Constants.Hero.ArcherMaxHealth);
         }
 
         #endregion

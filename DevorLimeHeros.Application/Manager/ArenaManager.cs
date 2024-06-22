@@ -30,8 +30,9 @@ namespace DevoraLimeHeros.Application.Manager
             return arena.HeroList.Where(hero => hero.HealtPoint > 0).ToList();
         }
 
-        public string Fight(Arena selectedArena)
+        public string Fight(int arenaId)
         {
+            Arena selectedArena = _arenaList.Where(arena => arena.Id == arenaId).First();
             StringBuilder stringBuilderResult = new StringBuilder();
             _attackResultList.Clear();
 
@@ -81,9 +82,14 @@ namespace DevoraLimeHeros.Application.Manager
             return arena.Id;
         }
 
-        public Arena? GetArenaById(int arenaId)
+        public bool HasArenaByID(int arenaId)
         {
-            return _arenaList.Where(arena => arena.Id == arenaId).FirstOrDefault();
+            return _arenaList.Where(arena => arena.Id == arenaId).Any();
+        }
+
+        public Arena? GetArenaByID(int arenaId)
+        {
+            return _arenaList.Where(arena => arena.Id==arenaId).FirstOrDefault();
         }
 
         public List<Hero> Select2DifferentAliveHero(List<Hero> aliveHeros)

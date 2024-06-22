@@ -6,10 +6,12 @@ namespace DevoraLimeHeros.Application.Manager.Interface
     {
         int GenerateHeros(int heroCounter);
 
-        string Fight(Arena selectedArena);
-
-        Arena? GetArenaById(int id);
+        string Fight(int ArenaId);
 
         List<Hero> Select2DifferentAliveHero(List<Hero> aliveHeros);
+
+        bool HasArenaByID(int arenaId);
+
+        Arena? GetArenaByID(int arenaId);
     }
 }
