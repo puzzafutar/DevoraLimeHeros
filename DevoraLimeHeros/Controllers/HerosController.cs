@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using DevoraLimeHeros.Application.Manager.Interface;
-using DevoraLimeHeros.Domain;
 
 namespace DevoraLimeHeros.Controllers
 {
@@ -34,13 +33,14 @@ namespace DevoraLimeHeros.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<string> Fight(int arenaId)
         {
-            Arena? selectedArena = _arenaManager.GetArenaById(arenaId);
-            if (selectedArena is null)
+            bool hasArena = _arenaManager.HasArenaByID(arenaId);
+            
+            if (!hasArena)
             {
                 return BadRequest("Nincs ilyen azonosítóval aréna!");
             }
 
-            var fightResult = _arenaManager.Fight(selectedArena);
+            var fightResult = _arenaManager.Fight(arenaId);
 
             return Ok(fightResult);
         }

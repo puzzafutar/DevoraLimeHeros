@@ -19,7 +19,7 @@ namespace DevoraLimeHeros.Application.Manager.Tests
 
             int arenId =  arenaManager.GenerateHeros(HeroCounter);
             
-            Assert.IsTrue(arenaManager.GetArenaById(arenId).HeroList.Count == HeroCounter);
+            Assert.IsTrue(arenaManager.GetArenaByID(1)?.HeroList.Count == HeroCounter);
         }
 
         [TestMethod()]
