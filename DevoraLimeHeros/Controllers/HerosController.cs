@@ -8,10 +8,12 @@ namespace DevoraLimeHeros.Controllers
     public class HerosController : ControllerBase
     {
         private readonly IArenaManager _arenaManager;
-        
-        public HerosController(IArenaManager arenaManager)
+        private readonly ILogger<HerosController> _logger;
+
+        public HerosController(IArenaManager arenaManager, ILogger<HerosController> logger)
         {
             _arenaManager = arenaManager;
+            _logger = logger;
         }
 
         [HttpPost("generate")]
