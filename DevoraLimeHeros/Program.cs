@@ -6,6 +6,11 @@ using DevoraLimeHeros.Application.Service;
 using DevoraLimeHeros.Application.Service.Interface;
 using DevorLimeHeros.Application.Providers;
 using DevoraLimeHeros.Application.Provider.Interface;
+using Serilog;
+using Serilog.Events;
+using ILogger = Serilog.ILogger;
+using DevoraLimeHeros.Controllers;
+using DevorLimeHeros.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +27,35 @@ builder.Services.AddSingleton<IArenaService, ArenaService>();
 builder.Services.AddSingleton<IHeroService, HeroService>();
 builder.Services.AddSingleton<IRandomProvider, RandomProvider>();
 
+var seriLog = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.File("logs\\logfile.txt", rollingInterval: RollingInterval.Day) // Fájlba történõ naplózás beállítása
+            .CreateLogger();
+
+ILoggerFactory logger = LoggerFactory.Create(logging =>
+{
+    logging.AddSerilog(seriLog);
+
+});
+ILogger<RequestResponseLoggerMiddleware> requestResponseLogger = logger.CreateLogger<RequestResponseLoggerMiddleware>();
+ILogger<HerosController> herosControllerLogger = logger.CreateLogger<HerosController>();
+builder.Services.AddSingleton(requestResponseLogger);
+builder.Services.AddSingleton(herosControllerLogger);
+
+builder.Host.UseSerilog();
+
+builder.Services.AddSingleton<Serilog.ILogger>(Log.Logger);
+
+builder.Host.UseSerilog();
+
+builder.Services.AddSingleton(Log.Logger);
+
 var app = builder.Build();
+
+app.UseMiddleware<RequestResponseLoggerMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
