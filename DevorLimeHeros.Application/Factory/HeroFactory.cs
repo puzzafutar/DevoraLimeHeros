@@ -7,29 +7,24 @@ namespace DevoraLimeHeros.Application.Factory
     {
         public Hero GetHero(HeroTypeEnum heroType, int id)
         {
-            Hero resultHero = new Hero();
-
-            resultHero.Type = heroType;
-            resultHero.Id = id;
+            int maxHealtPoint = 0;
 
             switch (heroType)
             {
                 case HeroTypeEnum.Archery:
-                    resultHero.MaxHealtPoint = Constants.Hero.ArcherMaxHealth;
+                    maxHealtPoint = Constants.Hero.ArcherMaxHealth;
                     break;
 
                 case HeroTypeEnum.Rider:
-                    resultHero.MaxHealtPoint = Constants.Hero.RiderMaxHealth;
+                    maxHealtPoint = Constants.Hero.RiderMaxHealth;
                     break;
 
                 case HeroTypeEnum.Swordsman:
-                    resultHero.MaxHealtPoint = Constants.Hero.SwordsmanMaxHealth;
+                    maxHealtPoint = Constants.Hero.SwordsmanMaxHealth;
                     break;
             }
 
-            resultHero.HealtPoint = resultHero.MaxHealtPoint;
-
-            return resultHero;
+            return new Hero(heroType,id,maxHealtPoint);
         }
     }
 }
