@@ -16,8 +16,4 @@
     <ProjectReference Include="..\DevorLimeHeros.Application\DevoraLimeHeros.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="logs\" />
-  </ItemGroup>
-
 </Project>
