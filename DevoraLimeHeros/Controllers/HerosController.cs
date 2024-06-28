@@ -16,7 +16,7 @@ namespace DevoraLimeHeros.Controllers
             _logger = logger;
         }
 
-        [HttpPost("generate")]
+        [HttpPost("arena")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<int> GenerateHeros(int heroCounter)
@@ -31,7 +31,7 @@ namespace DevoraLimeHeros.Controllers
         }
 
         [HttpGet("fight")]
-        [ProducesResponseType(typeof(List<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<string> Fight(int arenaId)
         {
